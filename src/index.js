@@ -8,15 +8,20 @@ const port = 3000
 
 //Http logger middleware
 app.use(morgan('combined'))
+app.use('/public',express.static(path.join(__dirname, '/public')))
 
 //template engine setup
 app.engine('handlebars', hbs.engine())
 app.set('view engine', 'handlebars')
 app.set('views', path.join(__dirname, 'resources/views'))
-console.log(path.join(__dirname, 'resources/views'))
+console.log(path.join(__dirname, 'public'))
 
 app.get('/', (req, res) => {
     res.render('home')
+})
+
+app.get('/chat', (req, res) => {
+    res.render('chat')
 })
 
 app.listen(port, () => {
