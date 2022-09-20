@@ -6,6 +6,8 @@ const hbs = require('express-handlebars')
 const app = express()
 const port = 3000
 
+const route = require('./routes')
+
 //Http logger middleware
 app.use(morgan('combined'))
 app.use('/public',express.static(path.join(__dirname, '/public')))
@@ -16,13 +18,10 @@ app.set('view engine', 'handlebars')
 app.set('views', path.join(__dirname, 'resources/views'))
 console.log(path.join(__dirname, 'public'))
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
+route(app)
 
-app.get('/chat', (req, res) => {
-    res.render('chat')
-})
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
