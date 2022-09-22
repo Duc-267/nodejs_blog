@@ -2,10 +2,13 @@ const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
 const hbs = require('express-handlebars')
+const db = require('./config/db')
+
+//Connect to db
+db.connect();
 
 const app = express()
 const port = 3000
-
 const route = require('./routes')
 
 //Http logger middleware

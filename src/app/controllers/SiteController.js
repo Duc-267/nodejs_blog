@@ -1,3 +1,5 @@
+const Course = require('../model/Course')
+
 function SiteController() {
   // [GET] /
   this.index = function (req, res) {
