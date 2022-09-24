@@ -15,10 +15,14 @@ const route = require('./routes')
 app.use(morgan('combined'))
 app.use('/public',express.static(path.join(__dirname, '/public')))
 
+// encode middleware
+app.use(express.urlencoded()); 
+app.use(express.json());
+
 //template engine setup
 app.engine('handlebars', hbs.engine())
 app.set('view engine', 'handlebars')
-app.set('views', path.join(__dirname, 'resources/views'))
+app.set('views', path.join(__dirname, 'resources', 'views'))
 console.log(path.join(__dirname, 'public'))
 
 route(app)
@@ -27,5 +31,5 @@ route(app)
 
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`App listening on port ${port}`)
 })
