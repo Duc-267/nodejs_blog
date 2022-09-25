@@ -24,6 +24,21 @@ function CourseController() {
     newCourse.save()
     .then(() => res.redirect('/'))
   };
+
+  // [GET] /courses/:id/edit
+  this.edit = function (req, res, next) {
+    console.log(req.params.id);
+    Course.findById(req.params.id)  
+    .lean()
+    .then(course => res.render('courses/edit', { course }))
+    .catch(next)
+  };
+
+  // [PUT] /courses/:id
+  this.update = function (req, res) {
+    Course.updateOne({ _id: req.params.id }, req.body)
+    .then(() => res.redirect('../'))
+  };
 }
 
 module.exports = new CourseController();
