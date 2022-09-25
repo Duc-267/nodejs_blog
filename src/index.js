@@ -4,6 +4,8 @@ const morgan = require('morgan')
 const hbs = require('express-handlebars')
 const db = require('./config/db')
 
+
+
 //Connect to db
 db.connect();
 

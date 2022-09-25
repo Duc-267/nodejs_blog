@@ -1,3 +1,4 @@
+const slugify = require( 'slugify');
 const Course = require("../model/Course");
 
 function CourseController() {
@@ -18,6 +19,7 @@ function CourseController() {
   this.store = function (req, res) {
     const formData = req.body;
     formData.image = `https://files.fullstack.edu.vn/f8-prod/courses/13/13.png`;
+    formData.slug = slugify(formData.name);
     const newCourse = new Course(formData);
     newCourse.save()
     .then(() => res.redirect('/'))
